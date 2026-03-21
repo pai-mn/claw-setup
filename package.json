@@ -1,0 +1,13 @@
+{
+  "name": "claw-setup",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "zx": "^8.8.5"
+  }
+}

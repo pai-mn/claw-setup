@@ -1,0 +1,9 @@
+services:
+  claw:
+    image: public.ecr.aws/docker/library/node:25.8.1
+    container_name: claw
+    volumes:
+      - .:/root/claw-setup
+      - .openclaw:/root/.openclaw
+    working_dir: /root/claw-setup
+    command: ["bash", "claw.sh"]
