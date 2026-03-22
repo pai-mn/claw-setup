@@ -6,8 +6,9 @@ $.verbose = false;
 console.log("🚀 OpenClaw 初始化\n");
 
 // 必需配置
-const url = "https://openrouter.ai/api/v1";
-const model = "openrouter/free";
+const url = process.env.BASE_URL || "https://openrouter.ai/api/v1";
+const modelsEnv = process.env.MODELS || "openrouter/free";
+const models = modelsEnv.split(",").map(m => m.trim()).filter(Boolean);
 const key = process.env.OPENROUTER_API_KEY;
 
 if (!key) {
@@ -16,7 +17,7 @@ if (!key) {
 }
 
 console.log(`BASE_URL: ${url}`);
-console.log(`模型: ${model}`);
+console.log(`模型: ${models.join(", ")}`);
 console.log(`API Key: ${key.slice(0, 8)}...\n`);
 
 // 检查可选配置
@@ -35,10 +36,14 @@ await set("models.providers.custom", {
   api: "openai-completions",
   baseUrl: url,
   apiKey: key,
-  models: [{ id: model, name: model }],
+  models: models.map(m => ({ id: m, name: m })),
 });
 
-await set("agents.defaults.models", { [`custom/${model}`]: {} });
+const defaultModels: Record<string, {}> = {};
+for (const m of models) {
+  defaultModels[`custom/${m}`] = {};
+}
+await set("agents.defaults.models", defaultModels);
 await set("gateway.mode", "local");
 
 // 飞书
