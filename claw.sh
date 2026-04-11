@@ -23,14 +23,16 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 echo "📍 bun 路径: $(which bun)"
 
-# 如果没装过 openclaw，执行安装和配置
+# 如果没装过 openclaw，先执行安装
 if ! command -v openclaw &> /dev/null; then
   echo "📦 安装依赖..."
   bun install
   bun add -g openclaw
-  echo "⚙️  初始化配置..."
-  bun init-config.ts
 fi
+
+# 每次启动都同步配置
+echo "⚙️  初始化配置..."
+bun init-config.ts
 
 echo "🚀 启动 gateway..."
 exec openclaw gateway run
