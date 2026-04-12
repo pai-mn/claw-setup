@@ -1,6 +1,6 @@
 # claw-setup
 
-OpenClaw Docker 部署环境。
+OpenClaw Docker Quick Setup
 
 ## 快速开始
 
@@ -12,19 +12,53 @@ docker compose exec claw bash
 openclaw tui
 ```
 
-如需安装 OpenClaw 微信插件，可额外执行：
+## 配置
+
+```env
+# 必需，模型服务 API Key
+API_KEY=
+
+# API 基础地址
+# 默认值: https://openrouter.ai/api/v1
+BASE_URL=https://openrouter.ai/api/v1
+
+# 模型名称，多个用逗号分隔
+# 默认值: openrouter/free
+MODELS=openrouter/free
+
+# 可选，Agent 默认工作目录
+# 默认值: ~/.openclaw/workspace
+WORKSPACE=~/.openclaw/workspace
+
+# 可选，固定 Gateway Token；未提供时首次自动生成
+# 默认值: 首次自动生成
+# GATEWAY_TOKEN=
+
+# 可选，Telegram Bot Token
+# TELEGRAM_BOT_TOKEN=
+```
+
+---
+
+## 步骤
+
+1. Install bun
+2. Install n via bun
+3. Install node via n
+4. Install openclaw via npm
+5. Add model, e.g. Kimi, Minimax
+6. Setup IM, e.g. Telegram, Weixin
+7. Test
+
+环境变量
+
+```sh
+export N_PREFIX="$HOME/.n"
+export PATH="$N_PREFIX/bin:$PATH"
+```
+
+OpenClaw 微信插件
 
 ```bash
 bunx @tencent-weixin/openclaw-weixin-cli install
 ```
-
-## 配置
-
-| 变量 | 说明 | 默认值 |
-|------|------|--------|
-| `API_KEY` | 必需，模型服务 API Key | 必填 |
-| `BASE_URL` | API 基础地址 | `https://openrouter.ai/api/v1` |
-| `MODELS` | 模型名称，多个用逗号分隔 | `openrouter/free` |
-| `WORKSPACE` | 可选，Agent 默认工作目录 | `~/.openclaw/workspace` |
-| `GATEWAY_TOKEN` | 可选，固定 Gateway Token；未提供时首次自动生成 | 首次自动生成 |
-| `TELEGRAM_BOT_TOKEN` | 可选，Telegram Bot Token | 未设置 |
