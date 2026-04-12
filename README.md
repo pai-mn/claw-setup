@@ -38,17 +38,15 @@ WORKSPACE=~/.openclaw/workspace
 # TELEGRAM_BOT_TOKEN=
 ```
 
----
+## 步骤参考
 
-## 步骤
-
-1. Install bun
-2. Install n via bun
-3. Install node via n
-4. Install openclaw via npm
-5. Add model, e.g. Kimi, Minimax
-6. Setup IM, e.g. Telegram, Weixin
-7. Test
+1. 安装 bun
+2. 通过 bun 安装 n
+3. 通过 n 安装 node
+4. 通过 npm 安装 openclaw
+5. 添加模型，例如 Kimi、Minimax
+6. 设置即时通讯，例如 Telegram、微信
+7. 测试
 
 环境变量
 
